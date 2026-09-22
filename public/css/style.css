@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.stock-bar {
+    transition: width 0.5s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+.product-card {
+    transition: all 0.3s ease;
+}
+
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #0d7c66;
+    transition: width 0.3s;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #0d7c66, #0a6350);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #0a6350, #084d3e);
+}
+
+.hero-gradient {
+    background: linear-gradient(135deg, #0d7c66 0%, #0a6350 50%, #084d3e 100%);
+}
+
+.card-shadow {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.input-field {
+    transition: all 0.3s;
+}
+
+.input-field:focus {
+    box-shadow: 0 0 0 3px rgba(13, 124, 102, 0.15);
+}
+
+.fade-in {
+    animation: fadeIn 0.4s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.toast {
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #0d7c66;
+    border-radius: 4px;
+}
+
+.quantity-btn {
+    transition: all 0.2s;
+}
+
+.quantity-btn:hover {
+    transform: scale(1.1);
+}
+
+.admin-grad {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+
+.sidebar-link:hover {
+    background: #334155;
+}
+
+.sidebar-link.active {
+    background: #334155;
+    border-left: 3px solid #0d7c66;
+}
+
+.admin-input:focus {
+    box-shadow: 0 0 0 3px rgba(30, 41, 59, 0.15);
+}
