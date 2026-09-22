@@ -2,4 +2,30 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/oqnuzrqnnw/utbuy/
-    - /bin/cp -R . $DEPLOYPATH
+
+    # Copy application source (excludes .git, .env, node_modules, vendor)
+    - /bin/cp -R app $DEPLOYPATH
+    - /bin/cp -R bootstrap $DEPLOYPATH
+    - /bin/cp -R config $DEPLOYPATH
+    - /bin/cp -R database $DEPLOYPATH
+    - /bin/cp -R public $DEPLOYPATH
+    - /bin/cp -R resources $DEPLOYPATH
+    - /bin/cp -R routes $DEPLOYPATH
+    - /bin/cp -R storage $DEPLOYPATH
+    - /bin/cp artisan $DEPLOYPATH
+    - /bin/cp composer.json $DEPLOYPATH
+    - /bin/cp composer.lock $DEPLOYPATH
+
+    # Install production PHP dependencies
+    - cd $DEPLOYPATH && composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+
+    # Make storage and cache directories writable
+    - mkdir -p $DEPLOYPATH/storage/framework/cache $DEPLOYPATH/storage/framework/sessions $DEPLOYPATH/storage/framework/views $DEPLOYPATH/storage/logs
+    - /bin/chmod -R 775 $DEPLOYPATH/storage $DEPLOYPATH/bootstrap/cache
+
+    # Symlink public storage for uploaded product images
+    - cd $DEPLOYPATH && php artisan storage:link
+
+    # Apply database migrations and optimize the app
+    # - cd $DEPLOYPATH && php artisan migrate --force
+    - cd $DEPLOYPATH && php artisan optimize
